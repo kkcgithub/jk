@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noir Painter</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Noir Painter</h1>
+    <p class="tagline">Describe a scene. Get it back drenched in shadow.</p>
+
+    <form method="post" action="/generate">
+      <textarea
+        name="description"
+        rows="4"
+        placeholder="A detective waiting under a flickering streetlamp..."
+        required
+      >{{ description }}</textarea>
+      <button type="submit">Render</button>
+    </form>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if image_url %}
+    <div class="result">
+      <img src="{{ image_url }}" alt="Noir rendering of: {{ description }}" />
+    </div>
+    {% endif %}
+  </main>
+</body>
+</html>
